@@ -22,7 +22,7 @@ The point isn't four clever tricks. It's a repo where Claude is set up the way t
  
 On your branch of the repo:
  
-- a committed `.mcp.json` — a server at project scope, with a permission rule scoping what it may do
+- a committed `.mcp.json` with a server at project scope, plus a permission rule in `.claude/settings.json` (`permissions.allow`) scoping what it may do
 - a project skill in `.claude/skills/<name>/SKILL.md` that fires on the right request
 - a custom command in `.claude/commands/<name>.md`
 - a hook in `.claude/settings.json`
@@ -38,7 +38,7 @@ On your branch of the repo:
  
 #### 1. Connect a server the project can use
  
-Pick a server that genuinely helps work on *this* repo — a fetch server for pulling in API references, a filesystem server pointed at a docs folder, or another from Unit 5. Prefer a credential-free one, but feel free to make your own research with Claude. Connect it at **project scope** so it lands in a committed `.mcp.json`. Then set one permission rule that scopes what it may do — allow the read-only tools you'll actually use, rather than blanket-allowing the server. Finish by using it once on a real task, so you've seen it work, not just connected it.
+Pick a server that genuinely helps work on *this* repo — a fetch server for pulling in API references, a filesystem server pointed at a docs folder, or another from Unit 5. Prefer a credential-free one, but feel free to make your own research with Claude. Connect it at **project scope** so it lands in a committed `.mcp.json`. Then add one permission rule to `.claude/settings.json` under `permissions.allow` that scopes what it may do: allow the read-only tools you'll actually use (for example `mcp__fetch__fetch`), rather than blanket-allowing the server. Finish by using it once on a real task, so you've seen it work, not just connected it.
  
 If the server you choose needs a key, keep the secret out of `.mcp.json` — reference it as `${VAR}` and set the variable in your environment.
  
@@ -70,7 +70,7 @@ In a short `NOTES.md`, answer in a few sentences each:
 
 ### Definition of done
  
-- [ ] a server is connected at project scope (committed `.mcp.json`), with a permission rule scoping what it may do, and you've used it at least once
+- [ ] a server is connected at project scope (committed `.mcp.json`), a permission rule in `.claude/settings.json` scopes what it may do, and you've used it at least once
 - [ ] a project skill exists in `.claude/skills/`, with a description that triggers on the right request, and you confirmed it fires
 - [ ] a custom command exists in `.claude/commands/` and runs the way you intended
 - [ ] a hook is set at project scope (committed `.claude/settings.json`) and fires on its event
